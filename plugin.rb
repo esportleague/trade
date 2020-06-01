@@ -44,11 +44,11 @@ after_initialize do
     class << self
 
       def sold(topic_id, user)
-        trade('WIN', topic_id, user)
+        trade('sold', topic_id, user)
       end
 
       def purchased(topic_id, user)
-        trade('DRAW', topic_id, user)
+        trade('purchased', topic_id, user)
       end
 
       def exchanged(topic_id, user)
@@ -89,7 +89,8 @@ after_initialize do
 
   require_dependency "application_controller"
 
-  class DiscourseTopicTradeButtons::TradeController < ::ApplicationController
+  class DiscourseTopicTrade
+    s::TradeController < ::ApplicationController
     requires_plugin PLUGIN_NAME
 
     before_action :ensure_logged_in
@@ -109,14 +110,14 @@ after_initialize do
       topic_id   = params.require(:topic_id)
 
       begin
-        topic = DiscourseTopicTradeButtons::Trade.purchased(topic_id, current_user)
+        topic = DiscourseTopicTradeButtons::Trade.purchased22(topic_id, current_user)
         render json: { topic: topic }
       rescue StandardError => e
         render_json_error e.message
       end
     end
 
-    def exchanged
+    def exchanged22
       topic_id   = params.require(:topic_id)
 
       begin
@@ -141,7 +142,7 @@ after_initialize do
   end
 
   DiscourseTopicTradeButtons::Engine.routes.draw do
-    put "/sold" => "trade#sold"
+    put "/sold" => "trade#sold22"
     put "/purchased" => "trade#purchased"
     put "/exchanged" => "trade#exchanged"
     put "/cancelled" => "trade#cancelled"
