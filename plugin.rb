@@ -44,11 +44,11 @@ after_initialize do
     class << self
 
       def sold(topic_id, user)
-        trade('sold', topic_id, user)
+        trade('WIN', topic_id, user)
       end
 
       def purchased(topic_id, user)
-        trade('purchased', topic_id, user)
+        trade('DRAW', topic_id, user)
       end
 
       def exchanged(topic_id, user)
