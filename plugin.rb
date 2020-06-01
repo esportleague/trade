@@ -99,7 +99,7 @@ after_initialize do
       topic_id   = params.require(:topic_id)
 
       begin
-        topic = DiscourseTopicTradeButtons::Trade.sold22(topic_id, current_user)
+        topic = DiscourseTopicTradeButtons::Trade.sold(topic_id, current_user)
         render json: { topic: topic }
       rescue StandardError => e
         render_json_error e.message
@@ -110,7 +110,7 @@ after_initialize do
       topic_id   = params.require(:topic_id)
 
       begin
-        topic = DiscourseTopicTradeButtons::Trade.purchased22(topic_id, current_user)
+        topic = DiscourseTopicTradeButtons::Trade.purchased(topic_id, current_user)
         render json: { topic: topic }
       rescue StandardError => e
         render_json_error e.message
