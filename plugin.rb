@@ -99,7 +99,7 @@ after_initialize do
       topic_id   = params.require(:topic_id)
 
       begin
-        topic = DiscourseTopicTradeButtons::Trade.sold(topic_id, current_user)
+        topic = DiscourseTopicTradeButtons::Trade.sold22(topic_id, current_user)
         render json: { topic: topic }
       rescue StandardError => e
         render_json_error e.message
@@ -117,7 +117,7 @@ after_initialize do
       end
     end
 
-    def exchanged22
+    def exchanged
       topic_id   = params.require(:topic_id)
 
       begin
@@ -142,7 +142,7 @@ after_initialize do
   end
 
   DiscourseTopicTradeButtons::Engine.routes.draw do
-    put "/sold" => "trade#sold22"
+    put "/sold" => "trade#sold"
     put "/purchased" => "trade#purchased"
     put "/exchanged" => "trade#exchanged"
     put "/cancelled" => "trade#cancelled"
